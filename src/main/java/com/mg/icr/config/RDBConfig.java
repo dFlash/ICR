@@ -1,14 +1,16 @@
 package com.mg.icr.config;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
+import org.springframework.instrument.classloading.LoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -22,6 +24,28 @@ public class RDBConfig {
     @Autowired
     private Environment env;
 
+    @Bean
+    public JpaTransactionManager jpaTransactionManager(){
+        JpaTransactionManager jtManager = new JpaTransactionManager(
+                getEntityManagerFactoryBean().getObject());
+        return jtManager;
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactory.setDataSource(getDataSource());
+        entityManagerFactory.setPersistenceUnitName("unitLocal");
+        LoadTimeWeaver loadTimeWeaver = new InstrumentationLoadTimeWeaver();
+        entityManagerFactory.setLoadTimeWeaver(loadTimeWeaver);
+        entityManagerFactory.setJpaProperties(hibernateProperties());
+        entityManagerFactory.setPackagesToScan("com.mg.icr.model");
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setDatabasePlatform(env.getProperty("hibernate.dialect"));
+        entityManagerFactory.setJpaVendorAdapter(adapter);
+        return entityManagerFactory;
+    }
+
     @Bean()
     public DataSource getDataSource()
     {
@@ -31,26 +55,6 @@ public class RDBConfig {
         ds.setUsername(env.getProperty("db.username"));
         ds.setPassword(env.getProperty("db.password"));
         return ds;
-    }
-
-    @Bean
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory)
-    {
-        HibernateTransactionManager htm = new HibernateTransactionManager();
-        htm.setSessionFactory(sessionFactory);
-        return htm;
-    }
-
-    @Bean
-    public LocalSessionFactoryBean getSessionFactory()
-    {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(getDataSource());
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        sessionFactory.setPackagesToScan(
-                new String[] { "com.mg.icr.model" });
-        return sessionFactory;
     }
 
     private Properties hibernateProperties() {
