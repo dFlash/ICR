@@ -8,7 +8,7 @@ public class SkillType {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_2")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "type", nullable = false)
