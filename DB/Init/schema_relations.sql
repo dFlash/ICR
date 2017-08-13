@@ -1,0 +1,90 @@
+ALTER TABLE icr.team_tool ADD CONSTRAINT tool_team_tool_fk
+FOREIGN KEY (tools_id)
+REFERENCES icr.tool (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.skill ADD CONSTRAINT skill_type_skill_fk
+FOREIGN KEY (skill_type_id)
+REFERENCES icr.skill_type (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.employee_skill ADD CONSTRAINT skill_employee_skill_fk
+FOREIGN KEY (skill_id)
+REFERENCES icr.skill (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.employee_history ADD CONSTRAINT employee_employee_history_fk
+FOREIGN KEY (employee_id)
+REFERENCES icr.employee (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.employee_skill ADD CONSTRAINT employee_employee_skill_fk
+FOREIGN KEY (employee_id)
+REFERENCES icr.employee (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.private_info ADD CONSTRAINT employee_private_info_fk
+FOREIGN KEY (employee_id)
+REFERENCES icr.employee (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.employee_history ADD CONSTRAINT posiion_employee_history_fk
+FOREIGN KEY (position_id)
+REFERENCES icr.posiion (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.project ADD CONSTRAINT project_company_fk
+FOREIGN KEY (company_id)
+REFERENCES icr.company (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.team ADD CONSTRAINT project_team_fk
+FOREIGN KEY (project_id)
+REFERENCES icr.project (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.team_tool ADD CONSTRAINT team_team_tool_fk
+FOREIGN KEY (team_id)
+REFERENCES icr.team (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.employee_history ADD CONSTRAINT team_employee_history_fk
+FOREIGN KEY (team_id)
+REFERENCES icr.team (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.bonus ADD CONSTRAINT bonus_type_bonus_fk
+FOREIGN KEY (bonus_type_id)
+REFERENCES icr.bonus_type (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE icr.bonus ADD CONSTRAINT company_bonus_fk
+FOREIGN KEY (company_id)
+REFERENCES icr.company (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
