@@ -6,6 +6,18 @@ apply plugin: 'war'
 
 sourceCompatibility = 1.8
 
+processResources {
+    filesMatching("**/application.properties") {
+        expand(project.properties)
+    }
+
+}
+
+task explodedWar(type: Copy) {
+    into "$buildDir/libs/exploded/"+rootProject.name+"-"+version+".war"
+    with war
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
