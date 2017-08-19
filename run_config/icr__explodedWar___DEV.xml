@@ -4,7 +4,7 @@
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
       <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="-Pdb_username=icruser -Pdb_password=icruser -Pdb_url=jdbc:postgresql://localhost/icrdb" />
+      <option name="scriptParameters" value="-Pdb_username=icruser -Pdb_password=icruser -Pdb_url=jdbc:postgresql://localhost/icrdb -Plog_path=E:/logging.log" />
       <option name="taskDescriptions">
         <list />
       </option>

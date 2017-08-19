@@ -10,7 +10,9 @@ processResources {
     filesMatching("**/application.properties") {
         expand(project.properties)
     }
-
+    filesMatching("**/log4j.properties") {
+        expand(project.properties)
+    }
 }
 
 task explodedWar(type: Copy) {
