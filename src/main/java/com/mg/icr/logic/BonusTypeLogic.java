@@ -7,4 +7,6 @@ import java.util.List;
 public interface BonusTypeLogic {
 
     List<BonusTypeDto> findAll();
+
+    BonusTypeDto find(Integer id);
 }

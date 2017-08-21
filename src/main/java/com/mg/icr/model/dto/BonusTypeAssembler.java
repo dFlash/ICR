@@ -13,4 +13,8 @@ public class BonusTypeAssembler {
                 .collect(Collectors.toList());
         return bonusTypeDtos;
     }
+
+    public static BonusTypeDto toDto(BonusType bonusType) {
+        return bonusType == null ? null : new BonusTypeDto(bonusType);
+    }
 }

@@ -27,4 +27,9 @@ public class BonusTypeDaoImpl implements BonusTypeDao {
         TypedQuery<BonusType> allQuery = entityManager.createQuery(all);
         return allQuery.getResultList();
     }
+
+    @Override
+    public BonusType find(Integer id) {
+        return entityManager.find(BonusType.class, id);
+    }
 }

@@ -3,10 +3,7 @@ package com.mg.icr.service;
 import com.mg.icr.logic.BonusTypeLogic;
 import com.mg.icr.model.dto.BonusTypeDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +17,11 @@ public class BonusTypeService {
     @ResponseBody
     public List<BonusTypeDto> findAll() {
         return bonusTypeLogic.findAll();
+    }
+
+    @RequestMapping(value = "/bonus-type/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public BonusTypeDto find(@PathVariable Integer id) {
+        return bonusTypeLogic.find(id);
     }
 }

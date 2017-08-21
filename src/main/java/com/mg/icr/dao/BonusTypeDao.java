@@ -7,4 +7,6 @@ import java.util.List;
 public interface BonusTypeDao {
 
     List<BonusType> findAll();
+
+    BonusType find(Integer id);
 }
