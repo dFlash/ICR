@@ -15,4 +15,6 @@ public class BonusTypeDto {
         this.type = bonusType.getType();
     }
 
+    public BonusTypeDto() {}
+
 }

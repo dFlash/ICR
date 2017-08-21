@@ -9,4 +9,6 @@ public interface BonusTypeLogic {
     List<BonusTypeDto> findAll();
 
     BonusTypeDto find(Integer id);
+
+    void save(BonusTypeDto bonusTypeDto);
 }

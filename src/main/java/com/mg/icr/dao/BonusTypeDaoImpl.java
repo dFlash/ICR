@@ -2,6 +2,7 @@ package com.mg.icr.dao;
 
 import com.mg.icr.model.BonusType;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
+@Transactional
 public class BonusTypeDaoImpl implements BonusTypeDao {
 
     @PersistenceContext
@@ -31,5 +33,10 @@ public class BonusTypeDaoImpl implements BonusTypeDao {
     @Override
     public BonusType find(Integer id) {
         return entityManager.find(BonusType.class, id);
+    }
+
+    @Override
+    public void save(BonusType bonusType) {
+        entityManager.persist(bonusType);
     }
 }

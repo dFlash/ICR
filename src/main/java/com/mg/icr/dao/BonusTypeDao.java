@@ -9,4 +9,6 @@ public interface BonusTypeDao {
     List<BonusType> findAll();
 
     BonusType find(Integer id);
+
+    void save(BonusType bonusType);
 }

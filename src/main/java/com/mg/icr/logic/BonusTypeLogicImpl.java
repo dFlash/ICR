@@ -1,6 +1,7 @@
 package com.mg.icr.logic;
 
 import com.mg.icr.dao.BonusTypeDao;
+import com.mg.icr.model.BonusType;
 import com.mg.icr.model.dto.BonusTypeAssembler;
 import com.mg.icr.model.dto.BonusTypeDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class BonusTypeLogicImpl implements BonusTypeLogic{
     public BonusTypeDto find(Integer id) {
         BonusTypeDto bonusTypeDto = BonusTypeAssembler.toDto(bonusTypeDao.find(id));
         return bonusTypeDto;
+    }
+
+    @Override
+    public void save(BonusTypeDto bonusTypeDto) {
+        BonusType bonusType = BonusTypeAssembler.toEntity(bonusTypeDto);
+        bonusTypeDao.save(bonusType);
     }
 }

@@ -17,4 +17,8 @@ public class BonusTypeAssembler {
     public static BonusTypeDto toDto(BonusType bonusType) {
         return bonusType == null ? null : new BonusTypeDto(bonusType);
     }
+
+    public static BonusType toEntity(BonusTypeDto bonusTypeDto) {
+        return BonusType.builder().type(bonusTypeDto.getType()).build();
+    }
 }
