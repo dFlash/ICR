@@ -25,4 +25,8 @@ public class SkillTypeService {
         return skillTypeLogic.findAll();
     }
 
+    @RequestMapping(value = "/skillTypeId", method = RequestMethod.GET)
+    @ResponseBody
+    public SkillTypeDto getSkillTypeById(Integer skillTypeId) { return skillTypeLogic.findById(skillTypeId);}
+
 }

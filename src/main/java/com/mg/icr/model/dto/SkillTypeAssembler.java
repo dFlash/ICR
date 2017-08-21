@@ -14,4 +14,8 @@ public class SkillTypeAssembler {
         return skillTypeDtos;
     }
 
+    public static SkillTypeDto transferToDTO(SkillType skillType){
+        return new SkillTypeDto(skillType);
+    }
+
 }

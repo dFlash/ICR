@@ -20,4 +20,10 @@ public class SkillTypeLogicImpl implements SkillTypeLogic {
         List<SkillType> skillTypeList = skillTypeDao.findAll();
         return SkillTypeAssembler.transferToDTOList(skillTypeList);
     }
+
+    @Override
+    public SkillTypeDto findById(Integer skillTypeId) {
+        SkillType skillType = skillTypeDao.findSkillTypeById(skillTypeId);
+        return SkillTypeAssembler.transferToDTO(skillType);
+    }
 }
