@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class SkillType {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skill_type_gen")
+    @SequenceGenerator(name="skill_type_gen", schema = "icr", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
 
