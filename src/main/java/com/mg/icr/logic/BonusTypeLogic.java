@@ -11,4 +11,8 @@ public interface BonusTypeLogic {
     BonusTypeDto find(Integer id);
 
     void save(BonusTypeDto bonusTypeDto);
+
+    void update(BonusTypeDto bonusTypeDto);
+
+    void delete(Integer id);
 }

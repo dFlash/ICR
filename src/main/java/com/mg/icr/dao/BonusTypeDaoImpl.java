@@ -39,4 +39,14 @@ public class BonusTypeDaoImpl implements BonusTypeDao {
     public void save(BonusType bonusType) {
         entityManager.persist(bonusType);
     }
+
+    @Override
+    public void update(BonusType bonusType) {
+        entityManager.merge(bonusType);
+    }
+
+    @Override
+    public void delete(BonusType bonusType) {
+        entityManager.remove(bonusType);
+    }
 }
