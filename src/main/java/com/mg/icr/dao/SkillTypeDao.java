@@ -7,5 +7,9 @@ import java.util.List;
 
 public interface SkillTypeDao {
     List<SkillType> findAll();
-    SkillType findSkillTypeById(Integer Id);
+    SkillType findById(Integer Id);
+    void add(SkillType skillType);
+    void update(SkillType skillType);
+
+    void delete(SkillType skillType);
 }

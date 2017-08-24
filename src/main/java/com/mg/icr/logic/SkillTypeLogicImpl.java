@@ -6,10 +6,13 @@ import com.mg.icr.model.dto.SkillTypeDto;
 import com.mg.icr.model.dto.SkillTypeAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class SkillTypeLogicImpl implements SkillTypeLogic {
 
     @Autowired
@@ -17,13 +20,34 @@ public class SkillTypeLogicImpl implements SkillTypeLogic {
 
     @Override
     public List<SkillTypeDto> findAll() {
-        List<SkillType> skillTypeList = skillTypeDao.findAll();
-        return SkillTypeAssembler.transferToDTOList(skillTypeList);
+        return SkillTypeAssembler.toDTOList(skillTypeDao.findAll());
     }
 
     @Override
     public SkillTypeDto findById(Integer skillTypeId) {
-        SkillType skillType = skillTypeDao.findSkillTypeById(skillTypeId);
-        return SkillTypeAssembler.transferToDTO(skillType);
+        return SkillTypeAssembler.toDTO(skillTypeDao.findById(skillTypeId));
+    }
+
+    @Override
+    public void add(SkillTypeDto skillTypeDto) {
+        SkillType skillType = SkillTypeAssembler.toEntity(skillTypeDto);
+        skillTypeDao.add(skillType);
+    }
+
+    @Override
+    public void update(SkillTypeDto skillTypeDto) {
+        Optional<SkillType> skillTypeOptional = Optional.ofNullable(
+                skillTypeDao.findById(skillTypeDto.getId()));
+        skillTypeOptional.ifPresent(skillType -> {
+            skillType.setTypeName(skillTypeDto.getTypeName());
+            skillTypeDao.update(skillType);
+        });
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Optional<SkillType> skillTypeOptional = Optional.ofNullable(
+                skillTypeDao.findById(id));
+        skillTypeOptional.ifPresent(skillType -> skillTypeDao.delete(skillType));
     }
 }

@@ -19,6 +19,7 @@ import java.util.List;
 public class SkillTypeDaoImpl implements SkillTypeDao{
 
     private static String SKILL_TYPE_ID = "id";
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -34,8 +35,22 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
     }
 
     @Override
-    public SkillType findSkillTypeById(Integer id) {
+    public SkillType findById(Integer id) {
        return entityManager.find(SkillType.class, id);
     }
 
+    @Override
+    public void add(SkillType skillType) {
+        entityManager.persist(skillType);
+    }
+
+    @Override
+    public void update(SkillType skillType) {
+        entityManager.merge(skillType);
+    }
+
+    @Override
+    public void delete(SkillType skillType) {
+        entityManager.remove(skillType);
+    }
 }
