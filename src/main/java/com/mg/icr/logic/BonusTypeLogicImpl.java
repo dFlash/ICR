@@ -21,19 +21,19 @@ public class BonusTypeLogicImpl implements BonusTypeLogic{
 
     @Override
     public List<BonusTypeDto> findAll() {
-        return BonusTypeAssembler.toDtoList(bonusTypeDao.findAll());
+        return BonusTypeAssembler.toDTOList(bonusTypeDao.findAll());
     }
 
     @Override
     public BonusTypeDto find(Integer id) {
-        BonusTypeDto bonusTypeDto = BonusTypeAssembler.toDto(bonusTypeDao.find(id));
+        BonusTypeDto bonusTypeDto = BonusTypeAssembler.toDTO(bonusTypeDao.find(id));
         return bonusTypeDto;
     }
 
     @Override
-    public void save(BonusTypeDto bonusTypeDto) {
+    public void add(BonusTypeDto bonusTypeDto) {
         BonusType bonusType = BonusTypeAssembler.toEntity(bonusTypeDto);
-        bonusTypeDao.save(bonusType);
+        bonusTypeDao.add(bonusType);
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface BonusTypeLogic {
 
     BonusTypeDto find(Integer id);
 
-    void save(BonusTypeDto bonusTypeDto);
+    void add(BonusTypeDto bonusTypeDto);
 
     void update(BonusTypeDto bonusTypeDto);
 

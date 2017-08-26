@@ -36,7 +36,7 @@ public class BonusTypeDaoImpl implements BonusTypeDao {
     }
 
     @Override
-    public void save(BonusType bonusType) {
+    public void add(BonusType bonusType) {
         entityManager.persist(bonusType);
     }
 

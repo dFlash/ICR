@@ -10,7 +10,7 @@ public interface BonusTypeDao {
 
     BonusType find(Integer id);
 
-    void save(BonusType bonusType);
+    void add(BonusType bonusType);
 
     void update(BonusType bonusType);
 

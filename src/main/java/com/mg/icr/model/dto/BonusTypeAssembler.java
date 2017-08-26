@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 public class BonusTypeAssembler {
 
-    public static List<BonusTypeDto> toDtoList(List<BonusType> bonusTypes) {
+    public static List<BonusTypeDto> toDTOList(List<BonusType> bonusTypes) {
         List<BonusTypeDto> bonusTypeDtos = bonusTypes.stream()
                 .map(BonusTypeDto::new)
                 .collect(Collectors.toList());
         return bonusTypeDtos;
     }
 
-    public static BonusTypeDto toDto(BonusType bonusType) {
+    public static BonusTypeDto toDTO(BonusType bonusType) {
         return bonusType == null ? null : new BonusTypeDto(bonusType);
     }
 

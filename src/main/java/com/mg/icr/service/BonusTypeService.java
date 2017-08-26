@@ -33,9 +33,9 @@ public class BonusTypeService {
     }
 
     @RequestMapping(value = "/bonus-type", method = RequestMethod.POST)
-    public ResponseEntity save(@RequestBody BonusTypeDto bonusTypeDto) {
+    public ResponseEntity add(@RequestBody BonusTypeDto bonusTypeDto) {
         LOGGER.info("Save bonus type");
-        bonusTypeLogic.save(bonusTypeDto);
+        bonusTypeLogic.add(bonusTypeDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 
