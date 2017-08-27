@@ -1,4 +1,4 @@
-package com.mg.icr.model.dto;
+package com.mg.icr.model;
 
 import com.mg.icr.model.SkillType;
 import lombok.Builder;
