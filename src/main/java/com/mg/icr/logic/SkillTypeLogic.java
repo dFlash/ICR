@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface SkillTypeLogic {
     List<SkillTypeDto> findAll();
-    SkillTypeDto findById(Integer skillTypeId);
+    SkillTypeDto find(Integer id);
     void add(SkillTypeDto skillTypeDto);
     void update(SkillTypeDto skillTypeDto);
-    void delete(Integer skillTypeDto);
+    void delete(Integer id);
 }

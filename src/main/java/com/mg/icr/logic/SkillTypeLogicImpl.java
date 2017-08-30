@@ -24,8 +24,8 @@ public class SkillTypeLogicImpl implements SkillTypeLogic {
     }
 
     @Override
-    public SkillTypeDto findById(Integer skillTypeId) {
-        return SkillTypeAssembler.toDTO(skillTypeDao.findById(skillTypeId));
+    public SkillTypeDto find(Integer skillTypeId) {
+        return SkillTypeAssembler.toDTO(skillTypeDao.find(skillTypeId));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SkillTypeLogicImpl implements SkillTypeLogic {
     @Override
     public void update(SkillTypeDto skillTypeDto) {
         Optional<SkillType> skillTypeOptional = Optional.ofNullable(
-                skillTypeDao.findById(skillTypeDto.getId()));
+                skillTypeDao.find(skillTypeDto.getId()));
         skillTypeOptional.ifPresent(skillType -> {
             skillType.setTypeName(skillTypeDto.getTypeName());
             skillTypeDao.update(skillType);
@@ -47,7 +47,7 @@ public class SkillTypeLogicImpl implements SkillTypeLogic {
     @Override
     public void delete(Integer id) {
         Optional<SkillType> skillTypeOptional = Optional.ofNullable(
-                skillTypeDao.findById(id));
+                skillTypeDao.find(id));
         skillTypeOptional.ifPresent(skillType -> skillTypeDao.delete(skillType));
     }
 }
