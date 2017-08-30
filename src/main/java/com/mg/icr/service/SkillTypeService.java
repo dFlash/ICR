@@ -27,9 +27,9 @@ public class SkillTypeService {
 
     @RequestMapping(value = "/skill-type/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public SkillTypeDto findById(@PathVariable Integer id) {
+    public SkillTypeDto find(@PathVariable Integer id) {
         LOGGER.info(String.format("Select skill type by id %d", id));
-        return skillTypeLogic.findById(id);
+        return skillTypeLogic.find(id);
     }
 
     @RequestMapping(value = "/skill-type", method = RequestMethod.POST)

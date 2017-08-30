@@ -1,7 +1,6 @@
 package com.mg.icr.dao;
 
 import com.mg.icr.model.SkillType;
-import com.mg.icr.model.dto.SkillTypeDto;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -35,7 +33,7 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
     }
 
     @Override
-    public SkillType findById(Integer id) {
+    public SkillType find(Integer id) {
        return entityManager.find(SkillType.class, id);
     }
 
