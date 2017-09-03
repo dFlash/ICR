@@ -13,10 +13,4 @@ public class SkillTypeService {
     @Autowired
     private SkillTypeLogic skillTypeLogic;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getAllSkillTypes()
-    {
-        log.info("Select all skill types");
-        return skillTypeLogic.findAll().toString();
-    }
 }
