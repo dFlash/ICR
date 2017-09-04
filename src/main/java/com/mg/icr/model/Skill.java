@@ -1,6 +1,5 @@
 package com.mg.icr.model;
 
-import com.mg.icr.model.SkillType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

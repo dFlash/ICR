@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tool", schema = "icr")
@@ -24,10 +25,17 @@ public class Tools {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @ManyToMany
+    @JoinTable(name = "team_tool",
+            joinColumns = @JoinColumn(name = "tools_id"),
+            inverseJoinColumns = @JoinColumn(name = "team_id"))
+    private List<Team> teams;
+
     public Tools() {}
 
-    public Tools(Integer id, String name) {
+    public Tools(Integer id,String name, List<Team> teams) {
         this.id = id;
         this.name = name;
+        this.teams = teams;
     }
 }
