@@ -50,7 +50,37 @@ function bonusTypeRequest(id) {
 }
 
 function addForm() {
-    console.log("add form")
+    dataObject = {};
+    clearDiv();
+    var label = "<p>Type name </p>";
+    $('#bonusTypeDiv').append(label);
+    var input = "<input placeholder='Bonus Type' onchange='onTypeChange(this.value)' />";
+    $('#bonusTypeDiv').append(input);
+    $('#bonusTypeDiv').append("<br>");
+    var saveBtn = "<button class='btn btn-primary' onclick='addBonusType()'>Add</button>"
+    $('#bonusTypeDiv').append(saveBtn);
+    var backBtn = "<button class='btn btn-default' onclick='bonusTypesRequest()'>Back</button>"
+    $('#bonusTypeDiv').append(backBtn);
+}
+
+function addBonusType() {
+    if (!dataObject.type) {
+        alert("Type can not be empty");
+        return;
+    }
+    clearDiv();
+    addLoader();
+    $.ajax(
+        {
+            url: "http://localhost:8080/icr/bonus-type/",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(dataObject),
+            success: function() {
+                bonusTypesRequest();
+            }
+        }
+    );
 }
 
 function editForm(index) {
@@ -72,6 +102,10 @@ function onTypeChange(newValue) {
 }
 
 function saveBonusType() {
+    if (!dataObject.type) {
+        alert("Type can not be empty");
+        return;
+    }
     clearDiv();
     addLoader();
     $.ajax(
@@ -88,7 +122,21 @@ function saveBonusType() {
 }
 
 function deleteBonusType(id) {
-    console.log("delete")
+    var shouldBeDeleted = confirm("Are you sure?");
+    if (shouldBeDeleted == false) {
+        return;
+    }
+    clearDiv();
+    addLoader();
+    $.ajax(
+        {
+            url: "http://localhost:8080/icr/bonus-type/" + id,
+            type: 'DELETE',
+            success: function() {
+                bonusTypesRequest();
+            }
+        }
+    );
 }
 
 function clearDiv() {
